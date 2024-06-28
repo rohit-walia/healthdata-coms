@@ -22,8 +22,8 @@ the[GitHub Package Registry](https://github.com/rohit-walia?tab=packages&repo_na
 
 <dependency>
     <groupId>io.github.rohit-walia</groupId>
-    <artifactId>hl7message</artifactId>
-    <version>${hl7message.version}</version>
+    <artifactId>healthdata-coms</artifactId>
+    <version>${healthdata-coms.version}</version>
 </dependency>
 ```
 
