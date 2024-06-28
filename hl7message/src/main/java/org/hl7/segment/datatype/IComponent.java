@@ -1,4 +1,4 @@
-package org.hl7.segment.component;
+package org.hl7.segment.datatype;
 
 public interface IComponent {
   String CARET = "^";

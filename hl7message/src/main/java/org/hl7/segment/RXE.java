@@ -1,6 +1,6 @@
 package org.hl7.segment;
 
-import static org.hl7.segment.component.IComponent.CARET;
+import static org.hl7.segment.datatype.IComponent.CARET;
 import static org.hl7.utils.Hl7MsgUtils.getField;
 
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.jackson.Jacksonized;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.hl7.segment.component.CodedElement;
+import org.hl7.segment.datatype.CodedElement;
 
 /**
  * RXE segment of an HL7 message.

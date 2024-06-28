@@ -1,13 +1,13 @@
 package org.hl7.segment;
 
 
-import static org.hl7.segment.component.IComponent.CARET;
 import static org.hl7.utils.Hl7MsgUtils.getField;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.hl7.segment.datatype.ExtendedPersonName;
 
 import java.util.Objects;
 
@@ -21,25 +21,22 @@ import java.util.Objects;
 @Jacksonized
 public class PID implements ISegment {
   @Builder.Default
-  private final String pid_2_patientId = RandomStringUtils.randomNumeric(6);
+  private String pid_2_patientId = RandomStringUtils.randomNumeric(6);
   @Builder.Default
-  private final String pid_3_patient_identifier_list = EMPTY;
+  private String pid_3_patient_identifier_list = EMPTY;
   @Builder.Default
-  private final String pid_5_1_patient_last_name = EMPTY;
+  private ExtendedPersonName pid_5_patient_name = ExtendedPersonName.builder().build();
   @Builder.Default
-  private final String pid_5_2_patient_first_name = EMPTY;
+  private String pid_7_patient_dob = EMPTY;
   @Builder.Default
-  private final String pid_7_patient_dob = EMPTY;
-  @Builder.Default
-  private final String pid_8_patient_gender = EMPTY;
+  private String pid_8_patient_gender = EMPTY;
 
   public static final String segmentId = "PID";
 
   @Override
   public String print() {
-    return segmentId + "|1|" + pid_2_patientId + "|" + pid_3_patient_identifier_list + "||" + pid_5_1_patient_last_name + "^"
-        + pid_5_2_patient_first_name + "^^^^||" + pid_7_patient_dob + "|" + pid_8_patient_gender
-        + "|||||||||||||||||||||||||||||||";
+    return segmentId + "|1|" + pid_2_patientId + "|" + pid_3_patient_identifier_list + "||" + pid_5_patient_name.print()
+        + "^^^^||" + pid_7_patient_dob + "|" + pid_8_patient_gender + "|||||||||||||||||||||||||||||||";
   }
 
   /**
@@ -55,11 +52,7 @@ public class PID implements ISegment {
     PIDBuilder pid = PID.builder();
     getField(fields, 2).ifPresent(pid::pid_2_patientId);
     getField(fields, 3).ifPresent(pid::pid_3_patient_identifier_list);
-    getField(fields, 5).ifPresent(field -> {
-      String[] subFields = field.split("\\".concat(CARET));
-      pid.pid_5_1_patient_last_name(subFields[0])
-          .pid_5_2_patient_first_name(subFields[1]);
-    });
+    getField(fields, 5).map(ExtendedPersonName::fromString).ifPresent(pid::pid_5_patient_name);
     getField(fields, 7).ifPresent(pid::pid_7_patient_dob);
     getField(fields, 8).ifPresent(pid::pid_8_patient_gender);
     return pid.build();

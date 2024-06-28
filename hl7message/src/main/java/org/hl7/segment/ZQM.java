@@ -17,14 +17,15 @@ import java.util.Objects;
 @Jacksonized
 public class ZQM {
   public static final String segmentId = "ZQM";
+
   @Builder.Default
-  private final String zqm_3_barCode = "";
+  private String zqm_3_barCode = "";
   @Builder.Default
-  private final String zqm_6_vitalList = "";
+  private String zqm_6_vitalList = "";
   @Builder.Default
-  private final String zqm_9_isSelfAdminOrSlidingScale = "";
+  private String zqm_9_isSelfAdminOrSlidingScale = "";
   @Builder.Default
-  private final String zqm_10_brandNameEquivalent = "";
+  private String zqm_10_brandNameEquivalent = "";
 
   /**
    * Converts String to object that implements ISegment.

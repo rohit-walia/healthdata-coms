@@ -17,12 +17,13 @@ import java.util.Objects;
 @Jacksonized
 public class ZRX {
   public static final String segmentId = "ZRX";
+
   @Builder.Default
-  private final String zrx_1_dispenseCode = "";
+  private String zrx_1_dispenseCode = "";
   @Builder.Default
-  private final String zrx_3_patientChargeCode = "";
+  private String zrx_3_patientChargeCode = "";
   @Builder.Default
-  private final String zrx_4_retailPharmacyOriginalDate = "";
+  private String zrx_4_retailPharmacyOriginalDate = "";
 
   /**
    * Converts String to object that implements ISegment.

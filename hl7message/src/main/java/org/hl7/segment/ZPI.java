@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.hl7.segment.component.CodedElement;
+import org.hl7.segment.datatype.CodedElement;
 
 /**
  * ZPI is a custom segment for some specific interfaces. Framework is a common user of this segment.
@@ -17,23 +17,23 @@ import org.hl7.segment.component.CodedElement;
 public class ZPI implements ISegment {
   public static final String segmentId = "ZPI";
   @Builder.Default
-  private final String zpi_11_timesPerDay = "";
+  private String zpi_11_timesPerDay = "";
   @Builder.Default
-  private final String zpi_12_prescribedDate = "";
+  private String zpi_12_prescribedDate = "";
   @Builder.Default
-  private final String zpi_17_dispensePartialStatus = "";
+  private String zpi_17_dispensePartialStatus = "";
   @Builder.Default
-  private final CodedElement zpi_23_orderRequestId = CodedElement.builder().build();
+  private CodedElement zpi_23_orderRequestId = CodedElement.builder().build();
   @Builder.Default
-  private final String zpi_24_isPrn = "";
+  private String zpi_24_isPrn = "";
   @Builder.Default
-  private final String zpi_25_linkedReorderNumber = "";
+  private String zpi_25_linkedReorderNumber = "";
   @Builder.Default
-  private final String zpi_30_explicitTime = "";
+  private String zpi_30_explicitTime = "";
   @Builder.Default
-  private final String zpi_33_startDate = "";
+  private String zpi_33_startDate = "";
   @Builder.Default
-  private final String zpi_34_rxNumber = RandomStringUtils.randomNumeric(5);
+  private String zpi_34_rxNumber = RandomStringUtils.randomNumeric(5);
 
   /**
    * Converts String to object that implements ISegment.

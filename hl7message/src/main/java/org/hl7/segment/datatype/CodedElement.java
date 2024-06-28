@@ -1,4 +1,4 @@
-package org.hl7.segment.component;
+package org.hl7.segment.datatype;
 
 import static org.hl7.utils.Hl7MsgUtils.getField;
 
@@ -19,11 +19,11 @@ import java.util.stream.Stream;
 @Jacksonized
 public class CodedElement implements IComponent {
   @Builder.Default
-  private final String id = "";
+  private String id = "";
   @Builder.Default
-  private final String text = "";
+  private String text = "";
   @Builder.Default
-  private final String system = "";
+  private String system = "";
 
   @Override
   public String print() {

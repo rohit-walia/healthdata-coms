@@ -1,6 +1,6 @@
 package org.hl7.segment;
 
-import static org.hl7.segment.component.IComponent.CARET;
+import static org.hl7.segment.datatype.IComponent.CARET;
 import static org.hl7.utils.Hl7MsgUtils.getField;
 
 import lombok.Builder;
@@ -19,13 +19,13 @@ import java.util.Objects;
 @Jacksonized
 public class PV1 implements ISegment {
   @Builder.Default
-  private final String pv1_3_4_patientLocationRoom = EMPTY;
+  private String pv1_3_4_patientLocationRoom = EMPTY;
   @Builder.Default
-  private final String pv1_3_4_patientLocationBed = EMPTY;
+  private String pv1_3_4_patientLocationBed = EMPTY;
   @Builder.Default
-  private final String pv1_3_4_patientLocationFacility = EMPTY;
+  private String pv1_3_4_patientLocationFacility = EMPTY;
   @Builder.Default
-  private final String pv1_44_admitDateTime = EMPTY;
+  private String pv1_44_admitDateTime = EMPTY;
 
   public static final String segmentId = "PV1";
 

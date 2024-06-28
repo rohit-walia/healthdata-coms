@@ -5,7 +5,7 @@ import static org.hl7.utils.Hl7MsgUtils.getField;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
-import org.hl7.segment.component.CodedElement;
+import org.hl7.segment.datatype.CodedElement;
 
 /**
  * RXO segment of an HL7 message.
@@ -17,9 +17,9 @@ import org.hl7.segment.component.CodedElement;
 @Jacksonized
 public class RXO implements ISegment {
   @Builder.Default
-  private final CodedElement rxo_1_requestGiveCode = CodedElement.builder().build();
+  private CodedElement rxo_1_requestGiveCode = CodedElement.builder().build();
   @Builder.Default
-  private final CodedElement rxo_20_indication = CodedElement.builder().build();
+  private CodedElement rxo_20_indication = CodedElement.builder().build();
 
   public static final String segmentId = "RXO";
 

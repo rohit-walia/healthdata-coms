@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <name>healthdata-coms</name>
-    <description>health data communication</description>
+    <description>health data communication library</description>
 
     <modules>
         <module>hl7message</module>

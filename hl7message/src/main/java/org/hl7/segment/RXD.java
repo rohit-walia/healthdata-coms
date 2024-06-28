@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
-import org.hl7.segment.component.CodedElement;
+import org.hl7.segment.datatype.CodedElement;
 import org.hl7.utils.Hl7DateUtils;
 
 import java.time.LocalDateTime;
@@ -21,17 +21,17 @@ import java.time.LocalDateTime;
 @Jacksonized
 public class RXD implements ISegment {
   @NonNull
-  private final String rxd_1_dispenseSubIdCounter;
+  private String rxd_1_dispenseSubIdCounter;
   @NonNull
-  private final CodedElement rxd_2_dispenseGiveCode;
+  private CodedElement rxd_2_dispenseGiveCode;
   @Builder.Default
-  private final String rxd_3_dateTimeDispensed = Hl7DateUtils.formatToHl7(LocalDateTime.now());
+  private String rxd_3_dateTimeDispensed = Hl7DateUtils.formatToHl7(LocalDateTime.now());
   @Builder.Default
-  private final String rxd_4_actualDispenseAmount = EMPTY;
+  private String rxd_4_actualDispenseAmount = EMPTY;
   @Builder.Default
-  private final String rxd_5_actualDispenseUnit = EMPTY;
+  private String rxd_5_actualDispenseUnit = EMPTY;
   @Builder.Default
-  private final String rxd_7_prescriptionNumber = EMPTY;
+  private String rxd_7_prescriptionNumber = EMPTY;
 
   public static final String segmentId = "RXD";
 

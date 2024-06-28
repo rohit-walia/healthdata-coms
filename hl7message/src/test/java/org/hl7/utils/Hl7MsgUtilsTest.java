@@ -1,11 +1,10 @@
-package org.hl7;
+package org.hl7.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.hl7.Hl7Message;
 import org.hl7.segment.MSH;
 import org.hl7.segment.TQ1;
-import org.hl7.utils.Hl7DateUtils;
-import org.hl7.utils.Hl7MsgUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +16,8 @@ class Hl7MsgUtilsTest {
   void testCopy_ReturnsDeepCopy() {
     Hl7Message msg1 = Hl7Message.builder()
         .msh(MSH.builder()
-            .msh_3_sendingSystem("FW")
-            .msh_6_receivingFacility("Facility 1")
+            .msh_3_sendingSystem("BC")
+            .msh_6_receivingFacility("Location 1")
             .msh_9_messageType("ADT^A01")
             .build())
         .build();
@@ -34,13 +33,13 @@ class Hl7MsgUtilsTest {
   void testUpdateMessageStartAndEndDate() {
     Hl7Message msg1 = Hl7Message.builder()
         .msh(MSH.builder()
-            .msh_3_sendingSystem("FW")
-            .msh_6_receivingFacility("Facility 1")
+            .msh_3_sendingSystem("BC")
+            .msh_6_receivingFacility("Location 1")
             .msh_9_messageType("ADT^A01")
             .build())
         .tq1(TQ1.builder()
             .tq1_1_setId("1")
-            .tq1_11_admin_instructions("Admin Instructions")
+            .tq1_11_admin_instructions("Admin Instructions 1")
             .build()
             .toList())
         .build();

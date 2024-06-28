@@ -1,13 +1,13 @@
 package org.hl7.segment;
 
-import static org.hl7.segment.component.IComponent.CARET;
 import static org.hl7.utils.Hl7MsgUtils.getField;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.jackson.Jacksonized;
-import org.hl7.segment.component.TimingQuantity;
+import org.hl7.segment.datatype.ExtendedCompositePersonName;
+import org.hl7.segment.datatype.TimingQuantity;
 
 import java.util.Objects;
 
@@ -34,11 +34,7 @@ public class ORC implements ISegment {
   @Builder.Default
   private String orc_9_transactionDateTime = "";
   @Builder.Default
-  private String orc_12_1_orderingProviderId = "";
-  @Builder.Default
-  private String orc_12_2_orderingProviderFirstName = "";
-  @Builder.Default
-  private String orc_12_3_orderingProviderLastName = "";
+  private ExtendedCompositePersonName orc_12_orderingProvider = ExtendedCompositePersonName.builder().build();
   @Builder.Default
   private String orc_25_orderStatusModifier = "";
 
@@ -48,8 +44,7 @@ public class ORC implements ISegment {
   public String print() {
     return segmentId + "|" + orc_1_orderControl + "||" + orc_3_fillerOrderNumber + "|" + orc_4_placerGroupNumber
         + "|" + orc_5_orderStatus + "||" + orc_7_quantityTiming.print() + "||" + orc_9_transactionDateTime
-        + "|||" + orc_12_1_orderingProviderId + "^" + orc_12_2_orderingProviderFirstName + "^"
-        + orc_12_3_orderingProviderLastName + "|||||||||||||" + orc_25_orderStatusModifier + "|||||";
+        + "|||" + orc_12_orderingProvider.print() + "|||||||||||||" + orc_25_orderStatusModifier + "|||||";
   }
 
   /**
@@ -63,22 +58,13 @@ public class ORC implements ISegment {
     }
 
     ORCBuilder orc = ORC.builder();
-
-    // required fields
-    orc.orc_1_orderControl(getField(fields, 1).orElseThrow());
-
-    // optional fields
+    getField(fields, 1).ifPresent(orc::orc_1_orderControl);
     getField(fields, 3).ifPresent(orc::orc_3_fillerOrderNumber);
     getField(fields, 4).ifPresent(orc::orc_4_placerGroupNumber);
     getField(fields, 5).ifPresent(orc::orc_5_orderStatus);
     getField(fields, 7).map(TimingQuantity::fromString).ifPresent(orc::orc_7_quantityTiming);
     getField(fields, 9).ifPresent(orc::orc_9_transactionDateTime);
-    getField(fields, 12).ifPresent(field -> {
-      String[] subFields = field.split("\\".concat(CARET));
-      orc.orc_12_1_orderingProviderId(subFields[0])
-          .orc_12_2_orderingProviderFirstName(subFields[1])
-          .orc_12_3_orderingProviderLastName(subFields[2]);
-    });
+    getField(fields, 12).map(ExtendedCompositePersonName::fromString).ifPresent(orc::orc_12_orderingProvider);
     getField(fields, 25).ifPresent(orc::orc_25_orderStatusModifier);
     return orc.build();
   }
