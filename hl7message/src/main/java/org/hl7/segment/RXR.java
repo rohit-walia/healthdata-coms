@@ -5,7 +5,7 @@ import static org.hl7.utils.Hl7MsgUtils.getField;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
-import org.hl7.segment.component.CodedElement;
+import org.hl7.segment.datatype.CodedElement;
 
 /**
  * RXR segment of an HL7 message.
@@ -18,7 +18,12 @@ import org.hl7.segment.component.CodedElement;
 public class RXR implements ISegment {
   public static final String segmentId = "RXR";
   @Builder.Default
-  private final CodedElement rxr_1_route = CodedElement.builder().build();
+  private CodedElement rxr_1_route = CodedElement.builder().build();
+
+  @Override
+  public String print() {
+    return segmentId + "|" + rxr_1_route.print() + "|||||";
+  }
 
   /**
    * Converts String to object that implements ISegment.
@@ -33,10 +38,5 @@ public class RXR implements ISegment {
     RXRBuilder rxr = RXR.builder();
     getField(fields, 1).map(CodedElement::fromString).ifPresent(rxr::rxr_1_route);
     return rxr.build();
-  }
-
-  @Override
-  public String print() {
-    return segmentId + "|" + rxr_1_route.print() + "|||||";
   }
 }

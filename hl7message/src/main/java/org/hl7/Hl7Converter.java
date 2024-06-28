@@ -3,7 +3,7 @@ package org.hl7;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.common.MessageEvent;
 import org.hl7.segment.RXD;
-import org.hl7.segment.component.CodedElement;
+import org.hl7.segment.datatype.CodedElement;
 import org.hl7.utils.Hl7DateUtils;
 import org.hl7.utils.Hl7MsgUtils;
 
@@ -26,7 +26,7 @@ public class Hl7Converter {
       case ORDER_UPDATE -> {
         return convertToUpdate(origMsg);
       }
-      case ORDER_NEW, ORDER_HOLD, ORDER_IGNORE, ORDER_REFILL, ORDER_RESUME ->
+      case ORDER_NEW, ORDER_HOLD, ORDER_REFILL, ORDER_RESUME ->
           throw new RuntimeException("Can not convert message. Not yet implemented.");
       default -> throw new RuntimeException("Can not convert message. Unknown message event: " + convertTo);
     }

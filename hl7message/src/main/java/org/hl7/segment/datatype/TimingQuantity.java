@@ -1,4 +1,4 @@
-package org.hl7.segment.component;
+package org.hl7.segment.datatype;
 
 import static org.hl7.utils.Hl7MsgUtils.getField;
 
@@ -19,17 +19,17 @@ import java.util.stream.Stream;
 @Jacksonized
 public class TimingQuantity implements IComponent {
   @Builder.Default
-  private final String quantity = "";
+  private String quantity = "";
   @Builder.Default
-  private final String interval = "";
+  private String interval = "";
   @Builder.Default
-  private final String duration = "";
+  private String duration = "";
   @Builder.Default
-  private final String startDateTime = "";
+  private String startDateTime = "";
   @Builder.Default
-  private final String endDateTime = "";
+  private String endDateTime = "";
   @Builder.Default
-  private final String priority = "";
+  private String priority = "";
 
   @Override
   public String print() {

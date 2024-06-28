@@ -152,7 +152,9 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/rohit-walia/healthdata-coms</url>
-    <description>This library helps with hl7 messages.</description>
+    <description>This lightweight library is for working with hl7 messages. Health Level Seven, abbreviated to HL7, is a
+        global communication standard for the transfer of clinical and administrative health data between applications.
+    </description>
 
     <licenses>
         <license>

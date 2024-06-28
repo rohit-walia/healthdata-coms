@@ -24,13 +24,13 @@ import java.util.Objects;
 @Jacksonized
 public class MSH implements ISegment {
   @NonNull
-  private final String msh_3_sendingSystem;
+  private String msh_3_sendingSystem;
   @Builder.Default
-  private final String msh_4_sendingFacility = EMPTY;
+  private String msh_4_sendingFacility = EMPTY;
   @Builder.Default
-  private final String msh_5_receivingSystem = "PCC";
+  private String msh_5_receivingSystem = EMPTY;
   @NonNull
-  private final String msh_6_receivingFacility;
+  private String msh_6_receivingFacility;
   @Builder.Default
   private String msh_7_messageDatetime = Hl7DateUtils.formatToHl7(LocalDateTime.now());
   @NonNull
@@ -38,7 +38,7 @@ public class MSH implements ISegment {
   @Builder.Default
   private String msh_10_messageId = RandomStringUtils.randomNumeric(7);
   @Builder.Default
-  private final String msh_12_versionId = "2.5";
+  private String msh_12_versionId = "2.5";
 
   public static final String segmentId = "MSH";
 
@@ -60,16 +60,12 @@ public class MSH implements ISegment {
     }
 
     MSHBuilder msh = MSH.builder();
-
-    // required fields
-    msh.msh_6_receivingFacility(getField(fields, 5).orElseThrow());
-    msh.msh_9_messageType(getField(fields, 8).orElseThrow());
-
-    // optional fields
     getField(fields, 2).ifPresent(msh::msh_3_sendingSystem);
     getField(fields, 3).ifPresent(msh::msh_4_sendingFacility);
     getField(fields, 4).ifPresent(msh::msh_5_receivingSystem);
+    getField(fields, 5).ifPresent(msh::msh_6_receivingFacility);
     getField(fields, 6).ifPresent(msh::msh_7_messageDatetime);
+    getField(fields, 8).ifPresent(msh::msh_9_messageType);
     getField(fields, 9).ifPresent(msh::msh_10_messageId);
     getField(fields, 11).ifPresent(msh::msh_12_versionId);
     return msh.build();
